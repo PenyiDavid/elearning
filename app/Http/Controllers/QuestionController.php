@@ -17,22 +17,30 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['question' => 'required|string|max:255', 'subject_id' => 'required']);
-
+        $request->validate([
+            'question' => 'required|string|max:255',
+            'subject_id' => 'required|exists:subjects,id', // Ellenőrizzük, hogy a tantárgy létezik-e
+            'answers' => 'required|array|min:2', // Legalább 2 válasz szükséges
+            'answers.*.answer' => 'required|string|max:255', // Minden válasz kötelező
+        ]);
+    
+        // Új kérdés létrehozása
         $question = Question::create([
             'question' => $request->input('question'),
             'subject_id' => $request->input('subject_id'),
-            'score' => $request->input('score'),
+            'score' => $request->input('score') ?? 0, // Ha nincs score megadva, alapértelmezett 0
         ]);
-
+    
+        // Válaszok hozzáadása
         foreach ($request->input('answers') as $answerData) {
+            // Ha nincs is_correct megadva, akkor alapértelmezett 0
             Answer::create([
                 'question_id' => $question->id,
                 'answer' => $answerData['answer'],
-                'is_correct' => $answerData['is_correct'],
+                'is_correct' => isset($answerData['is_correct']) ? $answerData['is_correct'] : 0, // Ha nincs bejelölve, 0
             ]);
         }
-
+    
         return redirect()->back()->with('success', 'New question successfully added.'); // Visszajelzés
     }
 

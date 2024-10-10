@@ -20,7 +20,7 @@
             <select name="subject_id" class="form-control" required>
                 <option value="" disabled>Select a subject</option>
                 @foreach($subjects as $subject)
-                    <option value="{{ $subject->id }}" {{ $subject->id == $question->subject_id ? 'selected' : '' }}>{{ $subject->name }}</option>
+                    <option value="{{ $subject->id }}" {{ $subject->id == $question->subject_id ? 'selected' : '' }}>{{ $subject->subject }}</option>
                 @endforeach
             </select>
         </div>

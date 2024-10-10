@@ -20,7 +20,7 @@ class Question extends Model
     }
 
     // Kapcsolat a tantárggyal (egy kérdés egy tantárgyhoz tartozik)
-    public function subjects()
+    public function subject()
     {
         return $this->belongsTo(Subject::class);
     }

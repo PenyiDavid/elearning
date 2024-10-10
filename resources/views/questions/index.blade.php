@@ -22,7 +22,7 @@
             @foreach($questions as $question)
                 <tr>
                     <td>{{ $question->question }}</td>
-                    <td>{{ $question->subject->name }}</td>
+                    <td>{{ $question->subject->subject }}</td>
                     <td>
                         <a href="{{ route('editQuestion', $question->id) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('destroyQuestion', $question->id) }}" method="POST" style="display:inline;">
