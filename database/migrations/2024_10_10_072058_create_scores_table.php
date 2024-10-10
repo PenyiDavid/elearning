@@ -22,9 +22,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
-            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
+            //$table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            //$table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            //$table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
             
         });
     }

@@ -22,16 +22,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('indexTests') }}">Tests</a>
+                        <a class="nav-link" href="{{ route('showTesztForm') }}">Tests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('indexSubjects') }}">Subjects</a>
+                        <a class="nav-link" href="{{ route('createSubject') }}">Add Subject</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('indexQuestions') }}">Questions</a>
+                        <a class="nav-link" href="{{ route('createQuestion') }}">Add Question</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('listResults') }}">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('indexQuestions') }}">Manage Questions</a>
                     </li>
                 </ul>
             </div>

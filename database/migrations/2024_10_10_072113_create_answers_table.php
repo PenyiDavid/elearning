@@ -18,8 +18,7 @@ return new class extends Migration
             $table->boolean('is_correct')->default(false); // Helyes válasz-e
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-                });
+        });
     }
 
     /**

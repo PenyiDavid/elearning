@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('score')->default(1); // Kérdéshez tartozó pontszám
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
