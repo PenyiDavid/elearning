@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->id();
             $table->unsignedBigInteger('question_id'); // Kapcsolat a kérdéssel
             $table->string('answer'); // Válasz szövege
             $table->boolean('is_correct')->default(false); // Helyes válasz-e
