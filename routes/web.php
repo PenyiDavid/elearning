@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tesztek', [TestController::class, 'showTesztForm'])->name('showTesztForm');   // Teszt form megjelenítése
+Route::get('/tesztek', [TestController::class, 'showTesztForm'])->name('showTesztForm'); // Teszt form megjelenítése
 Route::post('/tesztek/{tantargy}', [TestController::class, 'startTeszt'])->name('startTeszt'); // Teszt kezdés
 Route::post('/tesztkitoltes', [TestController::class, 'submitTeszt'])->name('submitTeszt'); // Teszt beküldése
 

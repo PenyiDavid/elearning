@@ -10,14 +10,23 @@ use Illuminate\Http\Request;
 class TestController extends Controller
 {
     public function showTesztForm()
-    {
-        $subjects = Subject::all(); // Minden tantárgy lekérdezése
-        return view('tests.index', compact('subjects')); // Teszt választó forma megjelenítése
+{
+    $subjects = Subject::all(); // Minden tantárgy lekérdezése
+
+    // Ellenőrizzük, hogy van-e tantárgy a listában
+    if ($subjects->isEmpty()) {
+        return redirect()->back()->with('error', 'No subjects available for the test.'); // Hibaüzenet
     }
+
+    return view('tests.index', ['subjects' => $subjects]); // Teszt választó forma megjelenítése
+}
 
     public function startTeszt($tantargy)
     {
-        $subjectModel = Subject::where('name', $tantargy)->firstOrFail(); // Tantárgy lekérdezése
+        if (!$tantargy) {
+            return redirect()->back()->with('error', 'Subject is required.'); // Hibaüzenet
+        }
+        $subjectModel = Subject::where('subject', $tantargy)->firstOrFail(); // Tantárgy lekérdezése
         $questions = Question::with('answers')->where('subject_id', $subjectModel->id)->get(); // Kérdések lekérdezése
 
         return view('tests.test', compact('subjectModel', 'questions')); // Teszt megjelenítése

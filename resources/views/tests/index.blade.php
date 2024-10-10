@@ -8,19 +8,19 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <form action="{{ route('startTeszt', ['tantargy' => '']) }}" method="POST" id="testForm">
+    @foreach($subjects as $subject)
+    <form action="{{ route('startTeszt', $subject->subject) }}" method="POST" id="testForm">
         @csrf
         <div class="form-group">
             <label for="subject">Choose a Subject</label>
-            <select name="subject" class="form-control" required>
+            <select name="subject" id="subject" class="form-control" required>
                 <option value="" disabled selected>Select a subject</option>
-                @foreach($subjects as $subject)
-                    <option value="{{ $subject->name }}">{{ $subject->name }}</option>
-                @endforeach
+                    <option value="{{ $subject->subject }}">{{ $subject->subject }}</option>
+                
             </select>
         </div>
-
         <button type="submit" class="btn btn-primary mt-3">Start Test</button>
-    </form>
+    </form>   
+    @endforeach 
 </div>
 @endsection
