@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->string('question'); // Kérdés szövege
+            $table->unsignedBigInteger('subject_id'); // Tantárgyhoz kapcsolódó foreign key
+            $table->integer('score')->default(1); // Kérdéshez tartozó pontszám
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
